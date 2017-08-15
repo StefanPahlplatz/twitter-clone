@@ -6,6 +6,7 @@ import TabBar from '../components/TabBar';
 import HomeScreen from './HomeScreen';
 import SearchScreen from './SearchScreen';
 import NotificationScreen from './NotificationScreen';
+import ProfileScreen from './ProfileScreen';
 
 class Main extends Component {
   render() {
@@ -18,6 +19,7 @@ class Main extends Component {
         <HomeScreen tabLabel="home" />
         <SearchScreen tabLabel="search" />
         <NotificationScreen tabLabel="notifications-none" />
+        <ProfileScreen tabLabel="account-circle" />
       </ScrollableTabView>
     );
   }

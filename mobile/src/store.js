@@ -6,20 +6,17 @@ import thunk from 'redux-thunk';
 import reducers from './reducers';
 
 const networkInterface = createNetworkInterface({
-  uri: 'http://localhost:3001/graphql',
+  uri: 'http://192.168.2.60:3001/graphql',
 });
 
 export const client = new ApolloClient({
   networkInterface,
 });
 
-const middlewares = [
-  client.middleware(),
-  thunk,
-];
+const middlewares = [client.middleware(), thunk];
 
 export const store = createStore(
   reducers(client),
   undefined,
-  composeWithDevTools(applyMiddleware(...middlewares)),
+  composeWithDevTools(applyMiddleware(...middlewares))
 );
