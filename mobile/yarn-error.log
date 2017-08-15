@@ -1,14 +1,14 @@
 Arguments: 
-  E:\Program Files (x86)\NodeJS\node.exe E:\Program Files (x86)\Yarn\bin\yarn.js add react-native-scrollable-tab-view
+  E:\Program Files (x86)\NodeJS\node.exe E:\Program Files (x86)\Yarn\bin\yarn.js add react-native-experimental-navigation@0.26.10
 
 PATH: 
-  C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0\libnvvp;E:\Program Files (x86)\Python\Python 3.6.1\Scripts\;E:\Program Files (x86)\Python\Python 3.6.1\;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Skype\Phone\;E:\Program Files (x86)\Pandoc\;E:\Program Files (x86)\NodeJS\;E:\Program Files (x86)\Git\cmd;E:\Program Files (x86)\Java\jdk1.8.0_121\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;E:\Program Files (x86)\PuTTY\;E:\Program Files (x86)\Yarn\bin;C:\Users\stefa\AppData\Local\Microsoft\WindowsApps;C:\Users\stefa\AppData\Roaming\npm;C:\Users\stefa\AppData\Local\atom\bin;C:\Users\stefa\AppData\Local\Microsoft\WindowsApps;;C:\Program Files (x86)\Microsoft VS Code\bin;C:\Users\stefa\AppData\Local\Yarn\bin
+  C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0\libnvvp;E:\Program Files (x86)\Python\Python 3.6.1\Scripts\;E:\Program Files (x86)\Python\Python 3.6.1\;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Skype\Phone\;E:\Program Files (x86)\Pandoc\;E:\Program Files (x86)\Git\cmd;E:\Program Files (x86)\Java\jdk1.8.0_121\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;E:\Program Files (x86)\PuTTY\;E:\Program Files (x86)\Yarn\bin;E:\Program Files (x86)\NodeJS\;C:\Users\stefa\AppData\Local\Microsoft\WindowsApps;C:\Users\stefa\AppData\Local\atom\bin;C:\Users\stefa\AppData\Local\Microsoft\WindowsApps;;C:\Program Files (x86)\Microsoft VS Code\bin;C:\Users\stefa\AppData\Local\Yarn\bin;C:\Users\stefa\AppData\Roaming\npm
 
 Yarn version: 
   0.24.6
 
 Node version: 
-  6.10.2
+  6.11.2
 
 Platform: 
   win32 x64
@@ -27,6 +27,7 @@ npm manifest:
       "react": "16.0.0-alpha.12",
       "react-apollo": "^1.4.8",
       "react-native": "https://github.com/expo/react-native/archive/sdk-19.0.0.tar.gz",
+      "react-native-scrollable-tab-view": "^0.6.7",
       "react-navigation": "^1.0.0-beta.11",
       "react-redux": "^5.0.5",
       "redux": "^3.7.2",
@@ -3648,6 +3649,12 @@ Lockfile:
     dependencies:
       dedent "^0.6.0"
   
+  react-native-scrollable-tab-view@^0.6.7:
+    version "0.6.7"
+    resolved "https://registry.yarnpkg.com/react-native-scrollable-tab-view/-/react-native-scrollable-tab-view-0.6.7.tgz#3a5fe8a4bd5bc7eb023f306099323bbd9cc284a2"
+    dependencies:
+      react-timer-mixin "^0.13.3"
+  
   react-native-svg@5.3.0:
     version "5.3.0"
     resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-5.3.0.tgz#0d2ca98bee6726d627c2ca31617ac9c5f7d42daf"
@@ -3788,7 +3795,7 @@ Lockfile:
       loose-envify "^1.1.0"
       prop-types "^15.5.10"
   
-  react-timer-mixin@^0.13.2:
+  react-timer-mixin@^0.13.2, react-timer-mixin@^0.13.3:
     version "0.13.3"
     resolved "https://registry.yarnpkg.com/react-timer-mixin/-/react-timer-mixin-0.13.3.tgz#0da8b9f807ec07dc3e854d082c737c65605b3d22"
   
