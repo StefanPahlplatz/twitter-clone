@@ -12,6 +12,7 @@ import HomeScreen from './screens/HomeScreen';
 import SearchScreen from './screens/SearchScreen';
 import NotificationScreen from './screens/NotificationScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import LoginScreen from './screens/LoginScreen';
 
 import { colors } from './utils/constants';
 
@@ -128,12 +129,16 @@ class AppNavigator extends Component {
       dispatch: this.props.dispatch,
       state: this.props.nav,
     });
+    if (!this.props.user.isAuthenticated) {
+      return <LoginScreen />;
+    }
     return <AppMainNav navigation={nav} />;
   }
 }
 
 export default connect(state => ({
   nav: state.nav,
+  user: state.user,
 }))(AppNavigator);
 
 export const router = AppMainNav.router;
