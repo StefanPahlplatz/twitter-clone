@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components/native';
 import { graphql } from 'react-apollo';
 import { ActivityIndicator, FlatList } from 'react-native';
+import { colors } from '../utils/constants';
 
 import FeedCard from '../components/FeedCards/FeedCard';
 
@@ -21,7 +22,7 @@ class HomeScreen extends Component {
     if (data.loading) {
       return (
         <Root>
-          <ActivityIndicator size="large" />
+          <ActivityIndicator size="large" color={colors.PRIMARY} />
         </Root>
       );
     }

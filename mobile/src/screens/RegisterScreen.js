@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import styled from 'styled-components/native';
-import { Keyboard } from 'react-native';
+import { graphql, compose } from 'react-apollo';
+import { AsyncStorage, ActivityIndicator } from 'react-native';
+import { connect } from 'react-redux';
 
 import DismissKeyboardHOC from '../components/DismissKeyboardHOC';
-import { colors } from '../utils/constants';
+import { colors, fakeAvatar } from '../utils/constants';
+import SIGNUP_MUTATION from '../graphql/mutations/signup';
+import { login } from '../actions/user';
 
 const Root = styled.View`
   flex: 1;
@@ -68,15 +72,56 @@ class LoginScreen extends Component {
       username: '',
       email: '',
       password: '',
+      isUsernameEdited: false,
+      loading: false,
     };
   }
 
-  _onChangeText = (text, type) => this.setState({ [type]: text });
+  _onChangeText = (text, type) => {
+    // Update the state.
+    this.setState({ [type]: text });
+
+    // If we're writing the name also fill the username.
+    if (type === 'fullName' && !this.state.isUsernameEdited) {
+      this.setState({
+        username: text.replace(/ /, ''),
+      });
+    }
+
+    // Disable the autofill of username after the user types in it.
+    if (type === 'username') {
+      this.setState({ isUsernameEdited: true });
+    }
+  };
 
   _checkDisabled() {
-    const { fullName, username, email, password } = this.state;
-    return !fullName || !email || !password || !username;
+    const { fullName, username, email, password, loading } = this.state;
+    return !fullName || !email || !password || !username || loading;
   }
+
+  _onSignupPress = async () => {
+    this.setState({ loading: true });
+
+    const { fullName, username, email, password } = this.state;
+    const avatar = fakeAvatar;
+
+    try {
+      const { data } = await this.props.mutate({
+        variables: {
+          fullName,
+          email,
+          password,
+          username,
+          avatar,
+        },
+      });
+      await AsyncStorage.setItem('twitterclone', data.signup.token);
+      this.setState({ loading: false });
+      return this.props.login();
+    } catch (e) {
+      throw e;
+    }
+  };
 
   render() {
     return (
@@ -87,6 +132,7 @@ class LoginScreen extends Component {
             autoCapitalize="words"
             underlineColorAndroid="#f1f1f1"
             onChangeText={text => this._onChangeText(text, 'fullName')}
+            value={this.state.fullName}
           />
         </InputWrapper>
         <InputWrapper>
@@ -97,6 +143,7 @@ class LoginScreen extends Component {
             autoCapitalize="words"
             underlineColorAndroid="#f1f1f1"
             onChangeText={text => this._onChangeText(text, 'username')}
+            value={this.state.username}
           />
         </InputWrapper>
         <InputWrapper>
@@ -116,13 +163,24 @@ class LoginScreen extends Component {
           />
         </InputWrapper>
         <BottomContainer>
-          <RegisterButton disabled={this._checkDisabled()}>
+          <RegisterButton
+            onPress={this._onSignupPress}
+            disabled={this._checkDisabled()}
+          >
             <RegisterButtonText>Register</RegisterButtonText>
           </RegisterButton>
+          {this.state.loading &&
+            <ActivityIndicator
+              style={{ marginTop: 16 }}
+              size="small"
+              color={colors.PRIMARY}
+            />}
         </BottomContainer>
       </DismissKeyboardView>
     );
   }
 }
 
-export default LoginScreen;
+export default compose(graphql(SIGNUP_MUTATION), connect(undefined, { login }))(
+  LoginScreen
+);
