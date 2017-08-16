@@ -1,11 +1,11 @@
 import React from 'react';
 import { TabNavigator } from 'react-navigation';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
 
 import HomeScreen from '../screens/HomeScreen';
 import SearchScreen from '../screens/SearchScreen';
 import NotificationScreen from '../screens/NotificationScreen';
-import ProfileScreen from '../screens/ProfileScreen';
+import MessageScreen from '../screens/MessageScreen';
 import { colors } from '../utils/constants';
 
 const TAB_ICON_SIZE = 21;
@@ -55,16 +55,16 @@ const MainTabNavigator = TabNavigator(
           />,
       }),
     },
-    Profile: {
-      screen: ProfileScreen,
+    Messages: {
+      screen: MessageScreen,
       navigationOptions: () => ({
-        headerTitle: 'Profile',
+        headerTitle: 'Messages',
         tabBarIcon: ({ tintColor }) =>
-          <FontAwesome
+          <MaterialIcons
             style={iconStyle}
             size={TAB_ICON_SIZE}
             color={tintColor}
-            name="user"
+            name="email"
           />,
       }),
     },
