@@ -7,7 +7,7 @@ import { AppLoading } from 'expo';
 import { store, client } from './src/store';
 import { colors } from './src/utils/constants';
 import { login } from './src/actions/user';
-import AppNavigator from './src/navigation';
+import AppNavigator from './src/navigation/AppNavigator';
 
 if (UIManager.setLayoutAnimationEnabledExperimental) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
