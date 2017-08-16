@@ -90,7 +90,7 @@ const Tabs = TabNavigator(
       pressColor: colors.LIGHT_GREY,
       style: {
         backgroundColor: colors.WHITE,
-        height: 40,
+        height: 45,
       },
       indicatorStyle: {
         backgroundColor: colors.PRIMARY,
@@ -114,12 +114,15 @@ const AppMainNav = StackNavigator(
       headerStyle: {
         backgroundColor: colors.WHITE,
         elevation: 0,
+        paddingTop: Expo.Constants.statusBarHeight,
+        paddingLeft: 8,
       },
       headerTitleStyle: {
-        fontSize: 14,
+        fontSize: 16,
         fontWeight: 'bold',
         color: colors.SECONDARY,
-        marginTop: Expo.Constants.statusBarHeight,
+        paddingLeft: 16,
+        paddingTop: 8,
       },
     }),
   }
