@@ -5,14 +5,16 @@ import {
   TabNavigator,
 } from 'react-navigation';
 import { connect } from 'react-redux';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
 import Expo from 'expo';
 
 import HomeScreen from './screens/HomeScreen';
 import SearchScreen from './screens/SearchScreen';
 import NotificationScreen from './screens/NotificationScreen';
 import ProfileScreen from './screens/ProfileScreen';
+
 import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen';
 
 import { colors } from './utils/constants';
 
@@ -123,6 +125,33 @@ const AppMainNav = StackNavigator(
   }
 );
 
+const LoginNav = StackNavigator(
+  {
+    Login: {
+      screen: LoginScreen,
+    },
+    Register: {
+      screen: RegisterScreen,
+    },
+  },
+  {
+    navigationOptions: () => ({
+      headerTintColor: colors.WHITE,
+      headerStyle: {
+        backgroundColor: colors.SECONDARY,
+        elevation: 0,
+        paddingTop: Expo.Constants.statusBarHeight,
+        height: 80,
+      },
+      headerTitleStyle: {
+        fontSize: 14,
+        fontWeight: 'bold',
+        color: colors.WHITE,
+      },
+    }),
+  }
+);
+
 class AppNavigator extends Component {
   render() {
     const nav = addNavigationHelpers({
@@ -130,7 +159,7 @@ class AppNavigator extends Component {
       state: this.props.nav,
     });
     if (!this.props.user.isAuthenticated) {
-      return <LoginScreen />;
+      return <LoginNav />;
     }
     return <AppMainNav navigation={nav} />;
   }

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components/native';
+import { Keyboard } from 'react-native';
 
-import { colors } from '../utils/constants';
 import DismissKeyboardHOC from '../components/DismissKeyboardHOC';
+import { colors } from '../utils/constants';
 
 const Root = styled.View`
   flex: 1;
@@ -12,13 +13,6 @@ const Root = styled.View`
 `;
 
 const DismissKeyboardView = DismissKeyboardHOC(Root);
-
-const Logo = styled.Image`
-  width: 120;
-  height: 120;
-  marginTop: 5%;
-  marginBottom: 40;
-`;
 
 const InputWrapper = styled.View`
   height: 50;
@@ -44,38 +38,36 @@ const UsernamePrefix = styled.Text`
   marginLeft: 8;
 `;
 
-const LoginButton = styled.TouchableOpacity`
-  marginTop: 40;
-  height: 35;
-  width: 70%;
-  backgroundColor: ${props => props.theme.SECONDARY};
-  justifyContent: center;
+const BottomContainer = styled.View`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200;
   alignItems: center;
-  borderRadius: 2;
-  borderWidth: 2;
-  borderColor: ${props => props.theme.LIGHT_GREY};
 `;
 
 const RegisterButton = styled.TouchableOpacity`
-  marginTop: 8;
+  marginTop: 40;
   height: 35;
   width: 70%;
-  backgroundColor: ${props => props.theme.SECONDARY};
+  backgroundColor: ${props => props.theme.PRIMARY};
   justifyContent: center;
   alignItems: center;
+  borderRadius: 2;
 `;
 
-const LoginButtonText = styled.Text`color: ${props => props.theme.WHITE};`;
-
-const RegisterButtonText = styled.Text`
-  color: ${props => props.theme.LIGHT_GREY};
-`;
+const RegisterButtonText = styled.Text`color: ${props => props.theme.WHITE};`;
 
 class LoginScreen extends Component {
+  _onOutsidePress = () => Keyboard.dismiss();
+
   render() {
     return (
       <DismissKeyboardView>
-        <Logo source={require('../../assets/icons/twitter-icon.png')} />
+        <InputWrapper>
+          <Input placeholder="Full Name" underlineColorAndroid="#f1f1f1" />
+        </InputWrapper>
         <InputWrapper>
           <UsernamePrefix>@</UsernamePrefix>
           <Input
@@ -86,6 +78,9 @@ class LoginScreen extends Component {
           />
         </InputWrapper>
         <InputWrapper>
+          <Input placeholder="Email" underlineColorAndroid="#f1f1f1" />
+        </InputWrapper>
+        <InputWrapper>
           <Input
             placeholder="Password"
             underlineColorAndroid="#f1f1f1"
@@ -93,14 +88,11 @@ class LoginScreen extends Component {
             password
           />
         </InputWrapper>
-        <LoginButton>
-          <LoginButtonText>Login</LoginButtonText>
-        </LoginButton>
-        <RegisterButton
-          onPress={() => this.props.navigation.navigate('Register')}
-        >
-          <RegisterButtonText>Register</RegisterButtonText>
-        </RegisterButton>
+        <BottomContainer>
+          <RegisterButton>
+            <RegisterButtonText>Register</RegisterButtonText>
+          </RegisterButton>
+        </BottomContainer>
       </DismissKeyboardView>
     );
   }
