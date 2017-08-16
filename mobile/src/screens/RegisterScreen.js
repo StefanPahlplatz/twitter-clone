@@ -60,13 +60,34 @@ const RegisterButton = styled.TouchableOpacity`
 const RegisterButtonText = styled.Text`color: ${props => props.theme.WHITE};`;
 
 class LoginScreen extends Component {
-  _onOutsidePress = () => Keyboard.dismiss();
+  constructor() {
+    super();
+
+    this.state = {
+      fullName: '',
+      username: '',
+      email: '',
+      password: '',
+    };
+  }
+
+  _onChangeText = (text, type) => this.setState({ [type]: text });
+
+  _checkDisabled() {
+    const { fullName, username, email, password } = this.state;
+    return !fullName || !email || !password || !username;
+  }
 
   render() {
     return (
       <DismissKeyboardView>
         <InputWrapper>
-          <Input placeholder="Full Name" underlineColorAndroid="#f1f1f1" />
+          <Input
+            placeholder="Full Name"
+            autoCapitalize="words"
+            underlineColorAndroid="#f1f1f1"
+            onChangeText={text => this._onChangeText(text, 'fullName')}
+          />
         </InputWrapper>
         <InputWrapper>
           <UsernamePrefix>@</UsernamePrefix>
@@ -75,21 +96,27 @@ class LoginScreen extends Component {
             placeholder="Username"
             autoCapitalize="words"
             underlineColorAndroid="#f1f1f1"
+            onChangeText={text => this._onChangeText(text, 'username')}
           />
         </InputWrapper>
         <InputWrapper>
-          <Input placeholder="Email" underlineColorAndroid="#f1f1f1" />
+          <Input
+            placeholder="Email"
+            underlineColorAndroid="#f1f1f1"
+            keyboardType="email-address"
+            onChangeText={text => this._onChangeText(text, 'email')}
+          />
         </InputWrapper>
         <InputWrapper>
           <Input
             placeholder="Password"
             underlineColorAndroid="#f1f1f1"
+            onChangeText={text => this._onChangeText(text, 'password')}
             secureTextEntry
-            password
           />
         </InputWrapper>
         <BottomContainer>
-          <RegisterButton>
+          <RegisterButton disabled={this._checkDisabled()}>
             <RegisterButtonText>Register</RegisterButtonText>
           </RegisterButton>
         </BottomContainer>

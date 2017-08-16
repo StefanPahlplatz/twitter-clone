@@ -7,7 +7,7 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "postinstall": "rndebugger-open",
-    "debug": "set REACT_DEBUGGER=rndebugger-open --open --port 8081 && exp start"
+    "debug": "set REACT_DEBUGGER=rndebugger-open --open --port 19001 && exp start"
   },
   "dependencies": {
     "apollo-client": "1.9.0-0",
