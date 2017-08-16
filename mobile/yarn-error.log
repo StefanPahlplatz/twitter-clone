@@ -1,5 +1,5 @@
 Arguments: 
-  E:\Program Files (x86)\NodeJS\node.exe E:\Program Files (x86)\Yarn\bin\yarn.js add -D react-native-debugger-open
+  E:\Program Files (x86)\NodeJS\node.exe E:\Program Files (x86)\Yarn\bin\yarn.js add date-fns
 
 PATH: 
   C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0\libnvvp;E:\Program Files (x86)\Python\Python 3.6.1\Scripts\;E:\Program Files (x86)\Python\Python 3.6.1\;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Skype\Phone\;E:\Program Files (x86)\Pandoc\;E:\Program Files (x86)\Git\cmd;E:\Program Files (x86)\Java\jdk1.8.0_121\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;E:\Program Files (x86)\PuTTY\;E:\Program Files (x86)\Yarn\bin;E:\Program Files (x86)\NodeJS\;C:\Users\stefa\AppData\Local\Microsoft\WindowsApps;C:\Users\stefa\AppData\Local\atom\bin;C:\Users\stefa\AppData\Local\Microsoft\WindowsApps;;C:\Program Files (x86)\Microsoft VS Code\bin;C:\Users\stefa\AppData\Local\Yarn\bin;C:\Users\stefa\AppData\Roaming\npm
@@ -22,7 +22,8 @@ npm manifest:
     "private": true,
     "main": "node_modules/expo/AppEntry.js",
     "scripts": {
-      "debug": "start 'rndebugger://set-debugger-loc?host=localhost&port=19001'"
+      "postinstall": "rndebugger-open",
+      "debug": "set REACT_DEBUGGER=rndebugger-open --open --port 8081 && exp start"
     },
     "dependencies": {
       "apollo-client": "1.9.0-0",
@@ -30,7 +31,6 @@ npm manifest:
       "react": "16.0.0-alpha.12",
       "react-apollo": "^1.4.8",
       "react-native": "https://github.com/expo/react-native/archive/sdk-19.0.0.tar.gz",
-      "react-native-scrollable-tab-view": "^0.6.7",
       "react-navigation": "^1.0.0-beta.11",
       "react-redux": "^5.0.5",
       "redux": "^3.7.2",
@@ -42,6 +42,7 @@ npm manifest:
       "eslint-config-equimper": "^2.2.1",
       "eslint-config-prettier": "^2.3.0",
       "prettier": "^1.5.3",
+      "react-native-debugger-open": "^0.3.12",
       "redux-devtools-extension": "^2.13.2"
     }
   }
@@ -1681,6 +1682,21 @@ Lockfile:
       d "1"
       es5-ext "~0.10.14"
   
+  es6-template-regex@^0.1.1:
+    version "0.1.1"
+    resolved "https://registry.yarnpkg.com/es6-template-regex/-/es6-template-regex-0.1.1.tgz#e517b9e0f742beeb8d3040834544fda0e4651467"
+  
+  es6-template@^1.0.4:
+    version "1.0.4"
+    resolved "https://registry.yarnpkg.com/es6-template/-/es6-template-1.0.4.tgz#56af42b57a31f5175d3f567d44b1efc12d2f2636"
+    dependencies:
+      es6-template-regex "^0.1.1"
+      extend-shallow "^2.0.1"
+      get-value "^2.0.2"
+      lazy-cache "^1.0.3"
+      mkdirp "^0.5.1"
+      sliced "^1.0.1"
+  
   es6-weak-map@^2.0.1:
     version "2.0.2"
     resolved "https://registry.yarnpkg.com/es6-weak-map/-/es6-weak-map-2.0.2.tgz#5e3ab32251ffd1538a1f8e5ffa1357772f92d96f"
@@ -1973,6 +1989,12 @@ Lockfile:
       uid-safe "~2.0.0"
       utils-merge "1.0.0"
   
+  extend-shallow@^2.0.1:
+    version "2.0.1"
+    resolved "https://registry.yarnpkg.com/extend-shallow/-/extend-shallow-2.0.1.tgz#51af7d614ad9a9f610ea1bafbb989d6b1c56890f"
+    dependencies:
+      is-extendable "^0.1.0"
+  
   extend@~3.0.0:
     version "3.0.1"
     resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.1.tgz#a755ea7bc1adfcc5a31ce7e762dbaadc5e636444"
@@ -2210,6 +2232,10 @@ Lockfile:
   get-stdin@^5.0.1:
     version "5.0.1"
     resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-5.0.1.tgz#122e161591e21ff4c52530305693f20e6393a398"
+  
+  get-value@^2.0.2:
+    version "2.0.6"
+    resolved "https://registry.yarnpkg.com/get-value/-/get-value-2.0.6.tgz#dc15ca1c672387ca76bd37ac0a395ba2042a2c28"
   
   getpass@^0.1.1:
     version "0.1.7"
@@ -2534,7 +2560,7 @@ Lockfile:
     dependencies:
       is-primitive "^2.0.0"
   
-  is-extendable@^0.1.1:
+  is-extendable@^0.1.0, is-extendable@^0.1.1:
     version "0.1.1"
     resolved "https://registry.yarnpkg.com/is-extendable/-/is-extendable-0.1.1.tgz#62b110e289a471418e3ec36a617d472e301dfc89"
   
@@ -3626,6 +3652,14 @@ Lockfile:
     version "2.0.0-beta.3"
     resolved "https://registry.yarnpkg.com/react-native-branch/-/react-native-branch-2.0.0-beta.3.tgz#2167af86bbc9f964bd45bd5f37684e5b54965e32"
   
+  react-native-debugger-open@^0.3.12:
+    version "0.3.12"
+    resolved "https://registry.yarnpkg.com/react-native-debugger-open/-/react-native-debugger-open-0.3.12.tgz#0a95aa410c4be24a8788fceb5b049b0d56e2d3bf"
+    dependencies:
+      chalk "^1.1.3"
+      es6-template "^1.0.4"
+      minimist "^1.2.0"
+  
   react-native-dismiss-keyboard@1.0.0:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/react-native-dismiss-keyboard/-/react-native-dismiss-keyboard-1.0.0.tgz#32886242b3f2317e121f3aeb9b0a585e2b879b49"
@@ -4230,6 +4264,10 @@ Lockfile:
   slice-ansi@0.0.4:
     version "0.0.4"
     resolved "https://registry.yarnpkg.com/slice-ansi/-/slice-ansi-0.0.4.tgz#edbf8903f66f7ce2f8eafd6ceed65e264c831b35"
+  
+  sliced@^1.0.1:
+    version "1.0.1"
+    resolved "https://registry.yarnpkg.com/sliced/-/sliced-1.0.1.tgz#0b3a662b5d04c3177b1926bea82b03f837a2ef41"
   
   slide@^1.1.5:
     version "1.1.6"

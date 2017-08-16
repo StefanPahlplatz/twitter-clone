@@ -28,10 +28,9 @@ const ButtonText = styled.Text`
 `;
 
 const ICON_SIZE = 19;
-const favoriteCount = 3;
 const isFavorite = false;
 
-const FeedCardBottom = () =>
+const FeedCardBottom = ({ favoriteCount }) =>
   <Root>
     <Button>
       <IconWrapper>

@@ -5,14 +5,6 @@ import FeedCardHeader from './FeedCardHeader';
 import FeedCardBottom from './FeedCardBottom';
 import FeedCardAvatar from './FeedCardAvatar';
 
-/* To use shadows:
-  shadowColor: ${props => props.theme.SECONDARY};
-  shadowOffset: 0px 2px;
-  shadowRadius: 2;
-  shadowOpacity: 0.1;
-  elevation: 1;
-*/
-
 const Root = styled.View`
   backgroundColor: ${props => props.theme.WHITE};
   width: 100%;
@@ -45,24 +37,22 @@ const CardContentText = styled.Text`
   color: ${props => props.theme.SECONDARY};
 `;
 
-const text = 'topkek first tweet can this wrap around the side?';
-
-function FeedCard() {
+function FeedCard({ text, user, createdAt, favoriteCount }) {
   return (
     <Root>
       <LeftSide>
         <AvatarContainer>
-          <FeedCardAvatar />
+          <FeedCardAvatar avatar={user.avatar} />
         </AvatarContainer>
       </LeftSide>
       <RightSide>
-        <FeedCardHeader />
+        <FeedCardHeader {...user} createdAt={createdAt} />
         <CardContentContainer>
           <CardContentText>
             {text}
           </CardContentText>
         </CardContentContainer>
-        <FeedCardBottom />
+        <FeedCardBottom favoriteCount={favoriteCount} />
       </RightSide>
     </Root>
   );

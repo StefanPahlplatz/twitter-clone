@@ -14,12 +14,20 @@ middlewares(app);
 
 const graphQLServer = createServer(app);
 
-// mocks().then(() => {             // Uncomment to get random data on each restart.
-graphQLServer.listen(constants.PORT, err => {
-  if (err) {
-    console.error(err);
-  } else {
-    console.log(`App listening on PORT: ${constants.PORT}`);
-  }
-});
-// });
+if (constants.RANDOM_DATA) {
+  mocks().then(() => {
+    startServer();
+  });
+} else {
+  startServer();
+}
+
+function startServer() {
+  graphQLServer.listen(constants.PORT, err => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log(`App listening on PORT: ${constants.PORT}`);
+    }
+  });
+}

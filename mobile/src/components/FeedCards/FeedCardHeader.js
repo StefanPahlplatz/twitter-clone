@@ -2,6 +2,8 @@ import React from 'react';
 import { Text } from 'react-native';
 import styled from 'styled-components/native';
 
+import timeElapsed from '../../utils/TimeSince';
+
 const Root = styled.View`
   flexDirection: column;
   alignItems: flex-start;
@@ -19,20 +21,16 @@ const Meta = styled.Text`
   color: ${props => props.theme.LIGHT_GREY};
 `;
 
-const name = 'Charlie Lee';
-const username = '@SatoshiLite';
-const elapsed = '2d';
-
-const FeedCardHeader = () =>
+const FeedCardHeader = ({ firstName, lastName, username, createdAt }) =>
   <Root>
     <Text>
       <Name>
-        {name}{' '}
+        {firstName} {lastName} {' '}
       </Name>
       <Meta>
         {username}
         {' · '}
-        {elapsed}
+        {timeElapsed(createdAt)}
       </Meta>
     </Text>
   </Root>;
