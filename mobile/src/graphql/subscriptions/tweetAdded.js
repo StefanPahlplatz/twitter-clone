@@ -1,8 +1,8 @@
 import { gql } from 'react-apollo';
 
 export default gql`
-  {
-    getTweets {
+  subscription {
+    tweetAdded {
       text
       _id
       createdAt
