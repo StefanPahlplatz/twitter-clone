@@ -4,9 +4,7 @@ import { graphql, compose } from 'react-apollo';
 import { AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 
-import Loading from '../components/Loading';
-import DismissKeyboardHOC from '../components/DismissKeyboardHOC';
-import { colors } from '../utils/constants';
+import { Loading, TextInput, DismissKeyboardHOC } from '../components';
 import LOGIN_MUTATION from '../graphql/mutations/login';
 import { login } from '../actions/user';
 
@@ -31,17 +29,6 @@ const InputWrapper = styled.View`
   width: 70%;
   marginVertical: 5;
   justifyContent: flex-end;
-`;
-
-const Input = styled.TextInput.attrs({
-  placeholderTextColor: colors.LIGHT_GRAY,
-  selectionColor: colors.PRIMARY,
-  autoCorrect: false,
-  paddingHorizontal: 8,
-  paddingBottom: 14,
-})`
-height: 30;
-color: ${props => props.theme.WHITE};
 `;
 
 const UsernamePrefix = styled.Text`
@@ -126,18 +113,16 @@ class LoginScreen extends Component {
         <Logo source={require('../../assets/icons/twitter-icon.png')} />
         <InputWrapper>
           <UsernamePrefix>@</UsernamePrefix>
-          <Input
+          <TextInput
             style={{ paddingLeft: 24 }}
             placeholder="Username"
             autoCapitalize="words"
-            underlineColorAndroid="#f1f1f1"
             onChangeText={text => this._onChangeText(text, 'username')}
           />
         </InputWrapper>
         <InputWrapper>
-          <Input
+          <TextInput
             placeholder="Password"
-            underlineColorAndroid="#f1f1f1"
             onChangeText={text => this._onChangeText(text, 'password')}
             secureTextEntry
           />

@@ -4,8 +4,9 @@ import Expo from 'expo';
 import { TouchableOpacity, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
-import MainTabNavigator from './MainTabNavigator';
 import { colors } from '../utils/constants';
+
+import MainTabNavigator from './MainTabNavigator';
 
 const MainStackNavigator = StackNavigator(
   {
@@ -20,7 +21,7 @@ const MainStackNavigator = StackNavigator(
     navigationOptions: ({ navigation }) => ({
       headerLeft: (
         <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
-          <MaterialIcons name="menu" size={25} color={colors.PRIMARY} />
+          <MaterialIcons name="menu" size={27} color={colors.PRIMARY} />
         </TouchableOpacity>
       ),
       headerRight: <View />,

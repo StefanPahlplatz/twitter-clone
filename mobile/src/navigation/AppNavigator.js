@@ -3,7 +3,7 @@ import { addNavigationHelpers } from 'react-navigation';
 import { connect } from 'react-redux';
 
 import LoginNavigator from './LoginNavigator';
-import MainDrawerNavigator from './MainDrawerNavigator';
+import TopLevelStack from './TopLevelStack';
 
 class AppNavigator extends Component {
   render() {
@@ -14,7 +14,7 @@ class AppNavigator extends Component {
     if (!this.props.user.isAuthenticated) {
       return <LoginNavigator />;
     }
-    return <MainDrawerNavigator navigation={nav} />;
+    return <TopLevelStack navigation={nav} />;
   }
 }
 
@@ -23,4 +23,4 @@ export default connect(state => ({
   user: state.user,
 }))(AppNavigator);
 
-export const router = MainDrawerNavigator.router;
+export const router = TopLevelStack.router;

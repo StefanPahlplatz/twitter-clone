@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 
 import Loading from '../Loading';
-import Avatar from '../../components/Avatar';
+import { Avatar } from '../../components';
 
 const Root = styled.View`
   position: relative;

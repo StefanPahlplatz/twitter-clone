@@ -4,7 +4,7 @@ import { graphql, compose } from 'react-apollo';
 import { AsyncStorage, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 
-import DismissKeyboardHOC from '../components/DismissKeyboardHOC';
+import { DismissKeyboardHOC, TextInput } from '../components';
 import { colors, fakeAvatar } from '../utils/constants';
 import SIGNUP_MUTATION from '../graphql/mutations/signup';
 import { login } from '../actions/user';
@@ -23,17 +23,6 @@ const InputWrapper = styled.View`
   width: 70%;
   marginVertical: 5;
   justifyContent: flex-end;
-`;
-
-const Input = styled.TextInput.attrs({
-  placeholderTextColor: colors.LIGHT_GRAY,
-  selectionColor: colors.PRIMARY,
-  autoCorrect: false,
-  paddingHorizontal: 8,
-  paddingBottom: 14,
-})`
-height: 30;
-color: ${props => props.theme.WHITE};
 `;
 
 const UsernamePrefix = styled.Text`
@@ -127,37 +116,33 @@ class RegisterScreen extends Component {
     return (
       <DismissKeyboardView>
         <InputWrapper>
-          <Input
+          <TextInput
             placeholder="Full Name"
             autoCapitalize="words"
-            underlineColorAndroid="#f1f1f1"
             onChangeText={text => this._onChangeText(text, 'fullName')}
             value={this.state.fullName}
           />
         </InputWrapper>
         <InputWrapper>
           <UsernamePrefix>@</UsernamePrefix>
-          <Input
+          <TextInput
             style={{ paddingLeft: 24 }}
             placeholder="Username"
             autoCapitalize="words"
-            underlineColorAndroid="#f1f1f1"
             onChangeText={text => this._onChangeText(text, 'username')}
             value={this.state.username}
           />
         </InputWrapper>
         <InputWrapper>
-          <Input
+          <TextInput
             placeholder="Email"
-            underlineColorAndroid="#f1f1f1"
             keyboardType="email-address"
             onChangeText={text => this._onChangeText(text, 'email')}
           />
         </InputWrapper>
         <InputWrapper>
-          <Input
+          <TextInput
             placeholder="Password"
-            underlineColorAndroid="#f1f1f1"
             onChangeText={text => this._onChangeText(text, 'password')}
             secureTextEntry
           />
