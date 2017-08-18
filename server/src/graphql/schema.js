@@ -69,8 +69,13 @@ export default `
     login(username: String!, password: String!): Auth
   }
 
+  type Subscription {
+    tweetAdded: Tweet
+  }
+
   schema {
     query: Query
     mutation: Mutation
+    subscription: Subscription
   }
 `;
