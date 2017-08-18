@@ -12,16 +12,20 @@ const timeElapsed = date => {
     ''
   );
   // Special cases
-  if (distance === 'half a minute' || distance === 'less than a minute') {
+  if (distance === 'halfaminute' || distance === 'lessthanaminute') {
     return '1m';
   }
 
   // Expression to match digits and the first letter
   const regex = /\d+\w/g;
 
-  // Extract the time.
-  const result = regex.exec(distance);
-  return result[0];
+  try {
+    // Extract the time.
+    const result = regex.exec(distance);
+    return result[0];
+  } catch (error) {
+    return distance;
+  }
 };
 
 export default timeElapsed;
