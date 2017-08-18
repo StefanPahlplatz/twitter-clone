@@ -63,7 +63,7 @@ const RegisterButton = styled.TouchableOpacity`
 
 const RegisterButtonText = styled.Text`color: ${props => props.theme.WHITE};`;
 
-class LoginScreen extends Component {
+class RegisterScreen extends Component {
   constructor() {
     super();
 
@@ -182,5 +182,5 @@ class LoginScreen extends Component {
 }
 
 export default compose(graphql(SIGNUP_MUTATION), connect(undefined, { login }))(
-  LoginScreen
+  RegisterScreen
 );

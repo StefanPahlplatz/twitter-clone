@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import styled from 'styled-components/native';
+import { graphql, compose } from 'react-apollo';
+import { AsyncStorage } from 'react-native';
+import { connect } from 'react-redux';
 
-import { colors } from '../utils/constants';
+import Loading from '../components/Loading';
 import DismissKeyboardHOC from '../components/DismissKeyboardHOC';
+import { colors } from '../utils/constants';
+import LOGIN_MUTATION from '../graphql/mutations/login';
+import { login } from '../actions/user';
 
 const Root = styled.View`
   flex: 1;
@@ -44,8 +50,16 @@ const UsernamePrefix = styled.Text`
   marginLeft: 8;
 `;
 
+const ErrorTextWrapper = styled.View`
+  height: 40;
+  justifyContent: center;
+  alignItems: center;
+`;
+
+const ErrorText = styled.Text`color: ${props => props.theme.RED};`;
+
 const LoginButton = styled.TouchableOpacity`
-  marginTop: 40;
+  marginTop: 20;
   height: 35;
   width: 70%;
   backgroundColor: ${props => props.theme.SECONDARY};
@@ -53,8 +67,10 @@ const LoginButton = styled.TouchableOpacity`
   alignItems: center;
   borderRadius: 2;
   borderWidth: 2;
-  borderColor: ${props => props.theme.LIGHT_GREY};
+  borderColor: ${props => props.theme.PRIMARY};
 `;
+
+const LoginButtonText = styled.Text`color: ${props => props.theme.WHITE};`;
 
 const RegisterButton = styled.TouchableOpacity`
   marginTop: 8;
@@ -65,13 +81,45 @@ const RegisterButton = styled.TouchableOpacity`
   alignItems: center;
 `;
 
-const LoginButtonText = styled.Text`color: ${props => props.theme.WHITE};`;
-
 const RegisterButtonText = styled.Text`
   color: ${props => props.theme.LIGHT_GREY};
 `;
 
 class LoginScreen extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      username: '',
+      password: '',
+      error: null,
+    };
+  }
+
+  _onLoginPress = async () => {
+    this.setState({ loading: true, error: null });
+
+    const { username, password } = this.state;
+
+    try {
+      const { data } = await this.props.mutate({
+        variables: {
+          username,
+          password,
+        },
+      });
+      await AsyncStorage.setItem('twitterclone', data.login.token);
+      this.setState({ loading: false });
+      return this.props.login();
+    } catch (e) {
+      this.setState({ error: "Can't log in!", loading: false });
+    }
+  };
+
+  _onChangeText = (text, type) => {
+    this.setState({ [type]: text });
+  };
+
   render() {
     return (
       <DismissKeyboardView>
@@ -83,17 +131,27 @@ class LoginScreen extends Component {
             placeholder="Username"
             autoCapitalize="words"
             underlineColorAndroid="#f1f1f1"
+            onChangeText={text => this._onChangeText(text, 'username')}
           />
         </InputWrapper>
         <InputWrapper>
           <Input
             placeholder="Password"
             underlineColorAndroid="#f1f1f1"
+            onChangeText={text => this._onChangeText(text, 'password')}
             secureTextEntry
-            password
           />
         </InputWrapper>
-        <LoginButton>
+
+        <ErrorTextWrapper>
+          {this.state.error &&
+            <ErrorText>
+              {this.state.error}
+            </ErrorText>}
+          {this.state.loading && <Loading size="small" />}
+        </ErrorTextWrapper>
+
+        <LoginButton onPress={this._onLoginPress}>
           <LoginButtonText>Login</LoginButtonText>
         </LoginButton>
         <RegisterButton
@@ -106,4 +164,6 @@ class LoginScreen extends Component {
   }
 }
 
-export default LoginScreen;
+export default compose(graphql(LOGIN_MUTATION), connect(undefined, { login }))(
+  LoginScreen
+);

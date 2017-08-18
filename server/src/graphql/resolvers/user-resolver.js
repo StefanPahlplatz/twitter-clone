@@ -15,9 +15,9 @@ export default {
     }
   },
 
-  login: async (_, { email, password }) => {
+  login: async (_, { username, password }) => {
     try {
-      const user = await User.findOne({ email });
+      const user = await User.findOne({ username });
 
       if (!user) {
         throw new Error("User doesn't exists");
