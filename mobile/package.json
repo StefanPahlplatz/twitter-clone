@@ -10,6 +10,7 @@
     "debug": "set REACT_DEBUGGER=rndebugger-open --open --port 19001 && exp start"
   },
   "dependencies": {
+    "@expo/react-native-action-sheet": "^1.0.0",
     "apollo-client": "1.9.0-0",
     "date-fns": "^1.28.5",
     "expo": "^19.0.0",

@@ -1,5 +1,5 @@
 Arguments: 
-  E:\Program Files (x86)\NodeJS\node.exe E:\Program Files (x86)\Yarn\bin\yarn.js add date-fns
+  E:\Program Files (x86)\NodeJS\node.exe E:\Program Files (x86)\Yarn\bin\yarn.js add @expo/react-native-action-sheet
 
 PATH: 
   C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0\libnvvp;E:\Program Files (x86)\Python\Python 3.6.1\Scripts\;E:\Program Files (x86)\Python\Python 3.6.1\;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Skype\Phone\;E:\Program Files (x86)\Pandoc\;E:\Program Files (x86)\Git\cmd;E:\Program Files (x86)\Java\jdk1.8.0_121\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;E:\Program Files (x86)\PuTTY\;E:\Program Files (x86)\Yarn\bin;E:\Program Files (x86)\NodeJS\;C:\Users\stefa\AppData\Local\Microsoft\WindowsApps;C:\Users\stefa\AppData\Local\atom\bin;C:\Users\stefa\AppData\Local\Microsoft\WindowsApps;;C:\Program Files (x86)\Microsoft VS Code\bin;C:\Users\stefa\AppData\Local\Yarn\bin;C:\Users\stefa\AppData\Roaming\npm
@@ -23,10 +23,11 @@ npm manifest:
     "main": "node_modules/expo/AppEntry.js",
     "scripts": {
       "postinstall": "rndebugger-open",
-      "debug": "set REACT_DEBUGGER=rndebugger-open --open --port 8081 && exp start"
+      "debug": "set REACT_DEBUGGER=rndebugger-open --open --port 19001 && exp start"
     },
     "dependencies": {
       "apollo-client": "1.9.0-0",
+      "date-fns": "^1.28.5",
       "expo": "^19.0.0",
       "react": "16.0.0-alpha.12",
       "react-apollo": "^1.4.8",
@@ -43,7 +44,8 @@ npm manifest:
       "eslint-config-prettier": "^2.3.0",
       "prettier": "^1.5.3",
       "react-native-debugger-open": "^0.3.12",
-      "redux-devtools-extension": "^2.13.2"
+      "redux-devtools-extension": "^2.13.2",
+      "redux-logger": "^3.0.6"
     }
   }
 
@@ -1482,6 +1484,10 @@ Lockfile:
     dependencies:
       assert-plus "^1.0.0"
   
+  date-fns@^1.28.5:
+    version "1.28.5"
+    resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.28.5.tgz#257cfc45d322df45ef5658665967ee841cd73faf"
+  
   dateformat@^2.0.0:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/dateformat/-/dateformat-2.0.0.tgz#2743e3abb5c3fc2462e527dca445e04e9f4dee17"
@@ -1505,6 +1511,10 @@ Lockfile:
   dedent@^0.6.0:
     version "0.6.0"
     resolved "https://registry.yarnpkg.com/dedent/-/dedent-0.6.0.tgz#0e6da8f0ce52838ef5cec5c8f9396b0c1b64a3cb"
+  
+  deep-diff@^0.3.5:
+    version "0.3.8"
+    resolved "https://registry.yarnpkg.com/deep-diff/-/deep-diff-0.3.8.tgz#c01de63efb0eec9798801d40c7e0dae25b582c84"
   
   deep-is@~0.1.3:
     version "0.1.3"
@@ -3686,12 +3696,6 @@ Lockfile:
     dependencies:
       dedent "^0.6.0"
   
-  react-native-scrollable-tab-view@^0.6.7:
-    version "0.6.7"
-    resolved "https://registry.yarnpkg.com/react-native-scrollable-tab-view/-/react-native-scrollable-tab-view-0.6.7.tgz#3a5fe8a4bd5bc7eb023f306099323bbd9cc284a2"
-    dependencies:
-      react-timer-mixin "^0.13.3"
-  
   react-native-svg@5.3.0:
     version "5.3.0"
     resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-5.3.0.tgz#0d2ca98bee6726d627c2ca31617ac9c5f7d42daf"
@@ -3832,7 +3836,7 @@ Lockfile:
       loose-envify "^1.1.0"
       prop-types "^15.5.10"
   
-  react-timer-mixin@^0.13.2, react-timer-mixin@^0.13.3:
+  react-timer-mixin@^0.13.2:
     version "0.13.3"
     resolved "https://registry.yarnpkg.com/react-timer-mixin/-/react-timer-mixin-0.13.3.tgz#0da8b9f807ec07dc3e854d082c737c65605b3d22"
   
@@ -3925,6 +3929,12 @@ Lockfile:
   redux-devtools-extension@^2.13.2:
     version "2.13.2"
     resolved "https://registry.yarnpkg.com/redux-devtools-extension/-/redux-devtools-extension-2.13.2.tgz#e0f9a8e8dfca7c17be92c7124958a3b94eb2911d"
+  
+  redux-logger@^3.0.6:
+    version "3.0.6"
+    resolved "https://registry.yarnpkg.com/redux-logger/-/redux-logger-3.0.6.tgz#f7555966f3098f3c88604c449cf0baf5778274bf"
+    dependencies:
+      deep-diff "^0.3.5"
   
   redux-thunk@^2.2.0:
     version "2.2.0"

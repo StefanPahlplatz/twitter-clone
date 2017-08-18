@@ -2,20 +2,12 @@ import React from 'react';
 import styled from 'styled-components/native';
 
 import DrawerTop from './DrawerTop';
+import DrawerBottom from './DrawerBottom';
 
 const Root = styled.View`
   flex: 1;
   position: relative;
 `;
-
-const BottomView = styled.TouchableOpacity`
-  position: absolute;
-  bottom: 20;
-  paddingVertical: 10;
-  alignItems: center;
-`;
-
-const LogoutText = styled.Text`marginLeft: 20;`;
 
 const DividerLine = styled.View`
   height: 1;
@@ -27,9 +19,7 @@ const Drawer = () =>
   <Root>
     <DrawerTop />
     <DividerLine />
-    <BottomView>
-      <LogoutText>Log out</LogoutText>
-    </BottomView>
+    <DrawerBottom />
   </Root>;
 
 export default Drawer;

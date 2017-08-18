@@ -20,11 +20,6 @@ const Name = styled.Text`fontWeight: 600;`;
 const Username = styled.Text`color: ${props => props.theme.LIGHT_GREY};`;
 
 class DrawerTop extends Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
-
   render() {
     if (!this.props.info) {
       return <Loading />;
