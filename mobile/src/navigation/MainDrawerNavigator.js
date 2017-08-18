@@ -1,8 +1,7 @@
 import React from 'react';
 import { DrawerNavigator } from 'react-navigation';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import MainStackNavigator from './MainStackNavigator';
-import Drawer from '../components/Drawer';
+import Drawer from '../components/Drawer/Drawer';
 
 const MainDrawerNavigator = DrawerNavigator(
   {

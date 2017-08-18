@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 
 import FeedCardHeader from './FeedCardHeader';
 import FeedCardBottom from './FeedCardBottom';
-import FeedCardAvatar from './FeedCardAvatar';
+import Avatar from '../Avatar';
 
 const Root = styled.View`
   backgroundColor: ${props => props.theme.WHITE};
@@ -42,7 +42,7 @@ function FeedCard({ text, user, createdAt, favoriteCount }) {
     <Root>
       <LeftSide>
         <AvatarContainer>
-          <FeedCardAvatar avatar={user.avatar} />
+          <Avatar avatar={user.avatar} />
         </AvatarContainer>
       </LeftSide>
       <RightSide>

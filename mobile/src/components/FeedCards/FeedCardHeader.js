@@ -28,7 +28,7 @@ const FeedCardHeader = ({ firstName, lastName, username, createdAt }) =>
         {firstName} {lastName} {' '}
       </Name>
       <Meta>
-        {username}
+        @{username}
         {' · '}
         {timeElapsed(createdAt)}
       </Meta>
