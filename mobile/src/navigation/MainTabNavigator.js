@@ -1,6 +1,9 @@
 import React from 'react';
 import { TabNavigator } from 'react-navigation';
 import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { TextInput } from '../components';
+import Expo from 'expo';
 
 import HomeScreen from '../screens/HomeScreen';
 import SearchScreen from '../screens/SearchScreen';
@@ -40,6 +43,44 @@ const MainTabNavigator = TabNavigator(
             color={tintColor}
             name="search"
           />,
+        header: ({ navigation }) =>
+          <View
+            style={{
+              backgroundColor: colors.WHITE,
+              elevation: 0,
+              paddingTop: Expo.Constants.statusBarHeight + 5.8,
+              paddingLeft: 16,
+              flexDirection: 'row',
+              height: 56,
+            }}
+          >
+            <TouchableOpacity
+              onPress={() => navigation.navigate('DrawerOpen')}
+              style={{ paddingRight: 16 }}
+            >
+              <MaterialIcons name="menu" size={27} color={colors.PRIMARY} />
+            </TouchableOpacity>
+            <View
+              style={{
+                backgroundColor: '#e6ecf0',
+                borderColor: '#ccd6dd',
+                borderRadius: 20,
+                width: 240,
+                height: 25,
+              }}
+            >
+              <TextInput
+                style={{
+                  color: '#657786',
+                  marginTop: 4,
+                  paddingLeft: 12,
+                  fontSize: 12,
+                }}
+                placeholder="Search Twitter"
+                placeholderTextColor="#657786"
+              />
+            </View>
+          </View>,
       }),
     },
     Notifications: {

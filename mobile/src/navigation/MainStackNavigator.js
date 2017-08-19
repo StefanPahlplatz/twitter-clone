@@ -1,7 +1,7 @@
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
 import Expo from 'expo';
-import { TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import { colors } from '../utils/constants';
@@ -24,7 +24,6 @@ const MainStackNavigator = StackNavigator(
           <MaterialIcons name="menu" size={27} color={colors.PRIMARY} />
         </TouchableOpacity>
       ),
-      headerRight: <View />,
       headerStyle: {
         backgroundColor: colors.WHITE,
         elevation: 0,
