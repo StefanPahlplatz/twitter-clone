@@ -35,6 +35,28 @@ export default {
     }
   },
 
+  search: async (_, { query }) => {
+    try {
+      if (query.length < 3) {
+        throw new Error('Too short');
+      }
+
+      const users = await User.find({
+        $or: [
+          { firstName: new RegExp(query, 'i') },
+          { lastName: new RegExp(query, 'i') },
+          { username: new RegExp(query, 'i') },
+        ],
+      }).limit(10);
+      if (!users) {
+        throw new Error('No results');
+      }
+      return users;
+    } catch (error) {
+      throw error;
+    }
+  },
+
   me: async (_, args, { user }) => {
     try {
       const me = await requireAuth(user);

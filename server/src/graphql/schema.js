@@ -1,4 +1,4 @@
-export default `
+export default`
   # Date type to format the date in UTC format, e.g. 2017-07-23T19:25:29.143Z
   scalar Date
 
@@ -54,11 +54,13 @@ export default `
     # Get a tweet by ID.
     getTweet(_id: ID!): Tweet
     # Get all tweets.
-    getTweets: [Tweet] 
+    getTweets: [Tweet]
     # Get all the tweets that the user tweeted.
     getUserTweets: [Tweet]
     # Get the details of the user.
     me: Me
+    # Search users
+    search(query: String!): [User]
   }
 
   type Mutation {
